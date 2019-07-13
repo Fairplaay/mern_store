@@ -1,6 +1,20 @@
+/**
+	 __  __                    _         _ _
+	|  \/  |_   ___      _____| |__  ___(_) |_ ___
+	| |\/| | | | \ \ /\ / / _ \ '_ \/ __| | __/ _ \
+	| |  | | |_| |\ V  V /  __/ |_) \__ \ | ||  __/
+	|_|  |_|\__, | \_/\_/ \___|_.__/|___/_|\__\___|
+			|___/
+ */
+/**
+ * @file Auth
+ * @description wrapper for the login and register
+ * @param {Object} props
+ * @module app/src/components/auth/Auth.jsx
+ */
 import React from 'react';
-import SignIn from './signin/signin_component.jsx';
-import SignUp from './signup/signup_component.jsx';
+import SignIn from './signin/Signin.jsx';
+import SignUp from './signup/Signup.jsx';
 import {
 	Tab,
 	Tabs,

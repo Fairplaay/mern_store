@@ -1,8 +1,25 @@
+/**
+	 __  __                    _         _ _
+	|  \/  |_   ___      _____| |__  ___(_) |_ ___
+	| |\/| | | | \ \ /\ / / _ \ '_ \/ __| | __/ _ \
+	| |  | | |_| |\ V  V /  __/ |_) \__ \ | ||  __/
+	|_|  |_|\__, | \_/\_/ \___|_.__/|___/_|\__\___|
+			|___/
+ */
+
+/**
+ * @file SingIn
+ * @description component for user login
+ * @param {Object} props
+ * @module app/src/components/auth/signin/signin_component
+ */
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { auth } from '../../../store/actions';
+import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
-import { Button, CardContent, makeStyles } from '@material-ui/core';
-import RenderTextField from '../common/renderTextField_component.jsx';
+import { Button, CardContent, makeStyles, CircularProgress } from '@material-ui/core';
+import RenderTextField from '../common/RenderTextField.jsx';
 import { emailRegex, passwordRegex } from '../../../plugins/regex';
 const useStyles = makeStyles(theme => ({
 	form: {
@@ -19,8 +36,15 @@ const useStyles = makeStyles(theme => ({
 	},
 	cardContent: {
 		[theme.breakpoints.up('sm')]: {
-			height: 340
+			height: 380
 		}
+	},
+	buttonProgress: {
+		color: theme.palette.secondary,
+		position: 'absolute',
+		bottom: 20,
+		width: 310,
+		margin: theme.spacing(3, 0, 3, 18)
 	}
 }));
 
@@ -41,12 +65,13 @@ const validate = values => {
 	return errors;
 };
 
-const SingIn = ({ handleSubmit, pristine, submitting }) => {
+const SingIn = ({ handleSubmit, pristine, submitting, history }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
 	const submit = values => {
-		console.log(values);
+		const isRegister = false;
+		dispatch(auth(values, history, isRegister));
 	};
 
 	return (
@@ -81,9 +106,10 @@ const SingIn = ({ handleSubmit, pristine, submitting }) => {
 				>
 					Ingresar
 				</Button>
+				{submitting && <CircularProgress size={24} className={classes.buttonProgress} />}
 			</form>
 		</CardContent>
 	);
 };
 
-export default reduxForm({ form: 'my-signin-form', validate })(SingIn);
+export default reduxForm({ form: 'my-signin-form', validate })(withRouter(SingIn));

@@ -7,6 +7,7 @@ import { signupValidation, loginValidation } from '../validation';
 const routes = express.Router();
 
 routes.post('/signup', async (req, res) => {
+    const timestamp = new Date().getDay();
     const data = req.body;
 
     // lets validate data before save
@@ -16,9 +17,6 @@ routes.post('/signup', async (req, res) => {
     // check if the email exists
     const emailExist = await User.findOne({ email: data.email });
     if (emailExist) return res.status(400).send('Email already exists');
-
-    // confirm password
-    if (data.password !== data.confirmPassword) return res.status(400).send('passwords are different');
 
     // hash password
     const salt = await bcrypt.genSalt(10);
@@ -33,7 +31,8 @@ routes.post('/signup', async (req, res) => {
     });
     try {
         const saveUser = await user.save();
-        return res.send(saveUser);
+        const token = jwt.sign({ _id: saveUser._id }, process.env.TOKEN_SECRET); // eslint-disable-line
+        return res.header('auth-token', token).send({ saveUser, timestamp, token });
     }
     catch (err) {
         return res.status(400).send(err);
@@ -41,6 +40,7 @@ routes.post('/signup', async (req, res) => {
 });
 
 routes.post('/signin', async (req, res) => {
+    const timestamp = new Date().getDay();
     const data = req.body;
 
     // validate data
@@ -57,7 +57,7 @@ routes.post('/signin', async (req, res) => {
 
     // create  and assign token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET); // eslint-disable-line
-    return res.header('auth-token', token).send({ user, token });
+    return res.header('auth-token', token).send({ user, timestamp, token });
 });
 
 export default routes;

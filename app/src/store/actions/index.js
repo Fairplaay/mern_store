@@ -1,18 +1,24 @@
 import axios from 'axios';
-export const signIn = history => {
+
+/**
+ * Async function for the login user
+ * call to api for the login with the method POST using axios.
+ * Dispatch action for save user and change isLogin to true.
+ * Redirect to dashboard.
+ * @param {object} data
+ * @param {object} history
+ */
+export const auth = (data, history, isRegister) => {
+	const url = isRegister
+		? 'http://localhost:3001/api/user/signup'
+		: 'http://localhost:3001/api/user/signin';
+
 	return async dispatch => {
 		try {
-			const response = await axios.get('http://www.mocky.io/v2/5ba409112f00005b00968a9d');
+			const response = await axios.post(url, data);
 			await dispatch({
-				type: 'SAVE_DATA',
-				data: response.data.data
-			});
-			await dispatch({
-				type: 'USER',
-				user: {
-					notification: response.data.notifications_count,
-					userName: response.data.userName
-				}
+				type: 'SAVE_USER',
+				user: response.data
 			});
 			await dispatch({
 				type: 'SIGN_IN',

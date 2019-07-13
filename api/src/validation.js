@@ -6,7 +6,6 @@ export const signupValidation = (data) => {
         lastName: Joi.string().min(2).required(),
         email: Joi.string().min(2).required().email(),
         password: Joi.string().min(6).required(),
-        confirmPassword: Joi.string().min(6).required(),
     };
     return Joi.validate(data, schema);
 };
