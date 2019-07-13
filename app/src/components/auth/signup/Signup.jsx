@@ -21,6 +21,10 @@ import { withRouter } from 'react-router-dom';
 import { Button, CardContent, makeStyles, Grid } from '@material-ui/core';
 import RenderTextField from '../common/RenderTextField.jsx';
 import { emailRegex, passwordRegex } from '../../../plugins/regex';
+
+/**
+ * style for component
+ */
 const useStyles = makeStyles(theme => ({
 	form: {
 		width: '100%', // Fix IE 11 issue.
@@ -41,6 +45,11 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
+/**
+ * validate inputs
+ * @param {Object} values
+ * @return {Object} errors
+ */
 const validate = values => {
 	const errors = {};
 	const requiredFields = ['firstName', 'lastName', 'email', 'password'];
@@ -60,9 +69,12 @@ const validate = values => {
 
 const Signup = ({ handleSubmit, pristine, submitting, history }) => {
 	const classes = useStyles();
-
 	const dispatch = useDispatch();
 
+	/**
+	 * dispact action for submit form
+	 * @param {Object} values
+	 */
 	const submit = values => {
 		const isRegister = true;
 		dispatch(auth(values, history, isRegister));
@@ -138,4 +150,8 @@ const Signup = ({ handleSubmit, pristine, submitting, history }) => {
 	);
 };
 
+/**
+ * HOC redux form for validations
+ * HOC withRouter for access to history router
+ */
 export default reduxForm({ form: 'my-signup-form', validate })(withRouter(Signup));

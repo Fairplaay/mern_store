@@ -1,3 +1,17 @@
+/**
+	 __  __                    _         _ _
+	|  \/  |_   ___      _____| |__  ___(_) |_ ___
+	| |\/| | | | \ \ /\ / / _ \ '_ \/ __| | __/ _ \
+	| |  | | |_| |\ V  V /  __/ |_) \__ \ | ||  __/
+	|_|  |_|\__, | \_/\_/ \___|_.__/|___/_|\__\___|
+			|___/
+ */
+/**
+ * @file Nav
+ * @description compoenent for Navbar, show only in mobile device
+ * @param {Boolean} props.handleDrawerToggle
+ * @module app/src/components/dashboard/appbar/Nav.jsx
+ */
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -18,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 		}
 	}
 }));
+
 const Nav = ({ handleDrawerToggle }) => {
 	const classes = useStyles();
 

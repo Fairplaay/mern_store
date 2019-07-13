@@ -8,7 +8,8 @@ import {
 	ListItemIcon,
 	ListItemText,
 	makeStyles,
-	useTheme
+	useTheme,
+	Fab
 } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
@@ -49,8 +50,12 @@ const Sidebar = ({ container, handleDrawerToggle, mobileOpen }) => {
 	const drawer = (
 		<div>
 			<div className={classes.toolbar}>
-				<Typography variant="h5">Mywebsite</Typography>
-				<Typography variant="caption">.com</Typography>
+				<Typography variant="h6" component="h1" style={{ fontWeight: 'bold' }}>
+					Mywebsite
+				</Typography>
+				<Fab color={theme.palette.primary.light} aria-label=".com" size="small">
+					<Typography variant="overline">.com</Typography>
+				</Fab>
 			</div>
 			<List>
 				{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (

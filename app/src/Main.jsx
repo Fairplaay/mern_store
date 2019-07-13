@@ -14,7 +14,7 @@
  */
 import React from 'react';
 import Auth from './components/auth/Auth.jsx';
-import Dashboard from './components/dashboard/dashboard_component.jsx';
+import Dashboard from './components/dashboard/Dashboard.jsx';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import store from './store';
 
