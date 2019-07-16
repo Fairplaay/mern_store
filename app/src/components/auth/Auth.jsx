@@ -59,12 +59,12 @@ const Auth = props => {
 			<Grid className={classes.content} container justify="center" alignItems="center">
 				<Grid item xs={12} sm={6} md={4} lg={3}>
 					<Card className={classes.card}>
-						<AppBar position="static" color="secondary">
+						<AppBar position="static" color="primary">
 							<Tabs
 								value={value}
 								onChange={handleChange}
 								style={{ margin: '0 auto' }}
-								indicatorColor="primary"
+								indicatorColor="secondary"
 							>
 								<Tab value={0} label="Ingresar" />
 								<Tab value={1} label="Registrarse" />

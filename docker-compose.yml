@@ -26,3 +26,5 @@ services:
       - ./app:/usr/src/app # copy files in containers
     ports:
       - "3000:3000" # specify port mapping
+    environment:
+      NODE_PATH: ./src

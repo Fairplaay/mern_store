@@ -1,6 +1,6 @@
 
 .root {
-  background-color: #0040c1;
+  background-color: #1171ef;
   position: relative;
   height: 100vh;
   overflow: hidden;
@@ -13,7 +13,7 @@
   left: 45vw;
   width: 10px;
   height: 10px;
-  border: solid 1px #003298;
+  border: solid 1px #11cdef;
   -webkit-transform-origin: top left;
           transform-origin: top left;
   -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);

@@ -4,10 +4,10 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import { signupValidation, loginValidation } from '../validation';
 
+
 const routes = express.Router();
 
 routes.post('/signup', async (req, res) => {
-    const timestamp = new Date().getDay();
     const data = req.body;
 
     // lets validate data before save
@@ -32,7 +32,7 @@ routes.post('/signup', async (req, res) => {
     try {
         const saveUser = await user.save();
         const token = jwt.sign({ _id: saveUser._id }, process.env.TOKEN_SECRET); // eslint-disable-line
-        return res.header('auth-token', token).send({ saveUser, timestamp, token });
+        return res.header('auth-token', token).send({ token });
     }
     catch (err) {
         return res.status(400).send(err);
@@ -40,7 +40,6 @@ routes.post('/signup', async (req, res) => {
 });
 
 routes.post('/signin', async (req, res) => {
-    const timestamp = new Date().getDay();
     const data = req.body;
 
     // validate data
@@ -55,9 +54,9 @@ routes.post('/signin', async (req, res) => {
     const validPassword = await bcrypt.compare(data.password, user.password);
     if (!validPassword) return res.status(400).sed('invalid password');
 
-    // create  and assign token
+    // create and assign token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET); // eslint-disable-line
-    return res.header('auth-token', token).send({ user, timestamp, token });
+    return res.header('auth-token', token).send({ token });
 });
 
 export default routes;

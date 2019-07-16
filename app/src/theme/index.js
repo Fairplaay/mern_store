@@ -3,26 +3,31 @@ import { createMuiTheme } from '@material-ui/core/styles';
 // A custom theme for this app
 const theme = createMuiTheme({
 	palette: {
-		common: { black: 'rgba(0, 0, 0, 1)', white: '#fff' },
+		common: { black: '#000', white: '#fff' },
 		background: { paper: '#fff', default: '#fafafa' },
 		primary: {
-			light: 'rgba(67, 61, 168, 1)',
-			main: 'rgba(0, 12, 78, 1)',
-			dark: '#303f9f',
-			contrastText: 'rgba(255, 255, 255, 1)'
-		},
-		secondary: {
-			light: '#ff4081',
-			main: 'rgba(251, 0, 105, 1)',
-			dark: '#c51162',
+			light: 'rgba(119, 220, 252, 1)',
+			main: '#11cdef',
+			dark: 'rgba(1, 72, 110, 1)',
 			contrastText: '#fff'
 		},
-		error: { light: '#e57373', main: '#f44336', dark: '#d32f2f', contrastText: '#fff' },
+		secondary: {
+			light: 'rgba(180, 184, 189, 1)',
+			main: '#1D36F6',
+			dark: 'rgba(87, 97, 112, 1)',
+			contrastText: 'rgba(38, 68, 116, 1)'
+		},
+		error: {
+			light: 'rgba(235, 54, 54, 1)',
+			main: 'rgba(255, 0, 0, 1)',
+			dark: 'rgba(100, 0, 0, 1)',
+			contrastText: '#fff'
+		},
 		text: {
-			primary: 'rgba(10, 0, 0, 0.87)',
-			secondary: 'rgba(8, 15, 211, 0.54)',
-			disabled: 'rgba(145, 145, 145, 0.38)',
-			hint: 'rgba(0, 0, 0, 0.38)'
+			primary: 'rgba(0, 0, 0, 0.87)',
+			secondary: 'rgba(0, 0, 0, 0.54)',
+			disabled: 'rgba(0, 0, 0, 0.38)',
+			hint: 'rgba(253, 3, 3, 1)'
 		}
 	}
 });

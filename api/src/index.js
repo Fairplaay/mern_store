@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authentication';
-
+import userRoutes from './routes/user';
 // config .env
 dotenv.config();
 
@@ -27,7 +27,8 @@ app.use((req, res, next) => {
 });
 
 // routes middlewares
-app.use('/api/user', authRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 // run app on port
 app.listen(process.env.PORT || 3001, () => {

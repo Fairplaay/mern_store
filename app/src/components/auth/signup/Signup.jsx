@@ -14,13 +14,12 @@
  * @module app/src/components/auth/signup/Signup.jsx
  */
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { useDispatch } from 'react-redux';
-import { auth } from '../../../store/actions';
+import RenderTextField from 'components/auth/common/RenderTextField.jsx';
 import { withRouter } from 'react-router-dom';
+import { register } from 'services/auth';
+import { Field, reduxForm } from 'redux-form';
+import { emailRegex, passwordRegex } from 'plugins/regex';
 import { Button, CardContent, makeStyles, Grid } from '@material-ui/core';
-import RenderTextField from '../common/RenderTextField.jsx';
-import { emailRegex, passwordRegex } from '../../../plugins/regex';
 
 /**
  * style for component
@@ -69,20 +68,14 @@ const validate = values => {
 
 const Signup = ({ handleSubmit, pristine, submitting, history }) => {
 	const classes = useStyles();
-	const dispatch = useDispatch();
-
-	/**
-	 * dispact action for submit form
-	 * @param {Object} values
-	 */
-	const submit = values => {
-		const isRegister = true;
-		dispatch(auth(values, history, isRegister));
-	};
 
 	return (
 		<CardContent className={classes.cardContent}>
-			<form className={classes.form} onSubmit={handleSubmit(submit)} noValidate>
+			<form
+				className={classes.form}
+				onSubmit={handleSubmit(values => register(values, history))}
+				noValidate
+			>
 				<Grid container spacing={1}>
 					<Grid item xs={6}>
 						<Field

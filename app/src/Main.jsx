@@ -13,10 +13,10 @@
  * @module app/src/Main.jsx
  */
 import React from 'react';
-import Auth from './components/auth/Auth.jsx';
 import Dashboard from './components/dashboard/Dashboard.jsx';
+import Auth from './components/auth/Auth.jsx';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import store from './store';
+import { loggedIn } from 'services/auth';
 
 /**
  * component wrapper for the private routes
@@ -27,11 +27,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 	<Route
 		{...rest}
 		render={props =>
-			store.getState().isLogin === true ? (
-				<Component {...props} />
-			) : (
-				<Redirect to="/authentication" />
-			)
+			loggedIn() === true ? <Component {...props} /> : <Redirect to="/authentication" />
 		}
 	/>
 );

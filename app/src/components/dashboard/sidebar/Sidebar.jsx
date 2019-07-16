@@ -12,7 +12,9 @@ import {
 	Fab
 } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import MapIcon from '@material-ui/icons/Map';
+import TabIcon from '@material-ui/icons/Tab';
+import Menu from './Menu.jsx';
 
 const drawerWidth = 240;
 
@@ -37,61 +39,60 @@ const useStyles = makeStyles(theme => ({
 		textAlign: 'center'
 	},
 	drawerPaper: {
-		width: drawerWidth,
-		backgroundColor: theme.palette.primary.main,
-		color: 'white'
+		width: drawerWidth
 	}
 }));
 
 const Sidebar = ({ container, handleDrawerToggle, mobileOpen }) => {
 	const classes = useStyles();
-	const theme = useTheme();
-
 	const drawer = (
 		<div>
 			<div className={classes.toolbar}>
-				<Typography variant="h6" component="h1" style={{ fontWeight: 'bold' }}>
+				<Typography
+					variant="h5"
+					component="h1"
+					style={{
+						fontWeight: 'bold',
+						color: 'rgba(0, 12, 78, 1)',
+						fontFamily: '"Notable", sans-serif'
+					}}
+				>
 					Mywebsite
 				</Typography>
-				<Fab color={theme.palette.primary.light} aria-label=".com" size="small">
+				<Fab color="secondary" aria-label=".com" size="small">
 					<Typography variant="overline">.com</Typography>
 				</Fab>
 			</div>
 			<List>
-				{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon style={{ color: 'white' }}>
-							{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-						</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
+				<ListItem button>
+					<ListItemIcon>
+						<InboxIcon style={{ color: 'yellow' }} />
+					</ListItemIcon>
+					<ListItemText primary="Dashboard" />
+				</ListItem>
+				<ListItem button>
+					<ListItemIcon>
+						<TabIcon style={{ color: 'cyan' }} />
+					</ListItemIcon>
+					<ListItemText primary="icons" />
+				</ListItem>
+				<ListItem button>
+					<ListItemIcon>
+						<MapIcon style={{ color: 'orange' }} />
+					</ListItemIcon>
+					<ListItemText primary="map" />
+				</ListItem>
 			</List>
 		</div>
 	);
 
 	return (
 		<div className={classes.root}>
+			<Hidden smUp implementation="css">
+				<Menu open={mobileOpen} onClose={handleDrawerToggle} />
+			</Hidden>
 			<nav className={classes.drawer} aria-label="Mailbox folders">
 				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-				<Hidden smUp implementation="css">
-					<Drawer
-						color="secondary"
-						container={container}
-						variant="temporary"
-						anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-						open={mobileOpen}
-						onClose={handleDrawerToggle}
-						classes={{
-							paper: classes.drawerPaper
-						}}
-						ModalProps={{
-							keepMounted: true // Better open performance on mobile.
-						}}
-					>
-						{drawer}
-					</Drawer>
-				</Hidden>
 				<Hidden xsDown implementation="css">
 					<Drawer
 						classes={{

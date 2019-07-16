@@ -48,8 +48,17 @@ const Nav = ({ handleDrawerToggle }) => {
 				>
 					<MenuIcon />
 				</IconButton>
-				<Typography variant="h6" noWrap>
-					Responsive drawer
+				<Typography
+					variant="h5"
+					component="h1"
+					style={{
+						fontWeight: 'bold',
+						color: 'rgba(0, 12, 78, 1)',
+						fontFamily: '"Notable", sans-serif',
+						textAlign: 'center'
+					}}
+				>
+					Mywebsite
 				</Typography>
 			</Toolbar>
 		</AppBar>

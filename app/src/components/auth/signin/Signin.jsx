@@ -14,13 +14,12 @@
  * @module app/src/components/auth/signin/signin_component
  */
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { auth } from '../../../store/actions';
+import RenderTextField from 'components/auth/common/RenderTextField.jsx';
 import { withRouter } from 'react-router-dom';
+import { login } from 'services/auth';
 import { Field, reduxForm } from 'redux-form';
+import { emailRegex, passwordRegex } from 'plugins/regex';
 import { Button, CardContent, makeStyles, CircularProgress } from '@material-ui/core';
-import RenderTextField from '../common/RenderTextField.jsx';
-import { emailRegex, passwordRegex } from '../../../plugins/regex';
 
 /**
  * style for component
@@ -76,20 +75,13 @@ const validate = values => {
 
 const SingIn = ({ handleSubmit, pristine, submitting, history }) => {
 	const classes = useStyles();
-	const dispatch = useDispatch();
-
-	/**
-	 * dispact action for submit form
-	 * @param {Object} values
-	 */
-	const submit = values => {
-		const isRegister = false;
-		dispatch(auth(values, history, isRegister));
-	};
 
 	return (
 		<CardContent className={classes.cardContent}>
-			<form className={classes.form} onSubmit={handleSubmit(submit)}>
+			<form
+				className={classes.form}
+				onSubmit={handleSubmit(values => login(values, history))}
+			>
 				<Field
 					id="email"
 					label="Correo eletrónico"
