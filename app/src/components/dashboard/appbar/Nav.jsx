@@ -8,7 +8,7 @@
  */
 /**
  * @file Nav
- * @description compoenent for Navbar, show only in mobile device
+ * @description component for Navbar, show only in mobile device
  * @param {Boolean} props.handleDrawerToggle
  * @module app/src/components/dashboard/appbar/Nav.jsx
  */

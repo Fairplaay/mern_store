@@ -27,10 +27,11 @@ const useStyles = makeStyles(theme => ({
 		backgroundImage: 'linear-gradient(87deg,#11cdef,#1171ef)'
 	},
 	container: {
+		overflow: 'hidden',
 		[theme.breakpoints.up('sm')]: {
 			marginLeft: drawerWidth
 		},
-		[theme.breakpoints.down('sm')]: {
+		[theme.breakpoints.down('xs')]: {
 			width: '100%',
 			overflowX: 'hidden'
 		}
@@ -50,7 +51,6 @@ const Dashboard = ({ history }) => {
 		<div className={classes.background}>
 			<Hidden smUp>
 				<Nav handleDrawerToggle={handleModalToggle} />
-				{/* <Menu open={mobileOpen} onClose={handleModalToggle} /> */}
 			</Hidden>
 			<Hidden xsDown implementation="css">
 				<Sidebar />

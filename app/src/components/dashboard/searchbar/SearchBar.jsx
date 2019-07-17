@@ -1,15 +1,16 @@
 import React from 'react';
-import { Avatar, makeStyles, Grid, Chip, Typography, Tooltip } from '@material-ui/core';
+import { Avatar, makeStyles, Grid, Chip, Typography, Tooltip, Hidden } from '@material-ui/core';
 import Search from './Search.jsx';
 import { logout } from 'services/auth';
 const useStyles = makeStyles(theme => ({
 	root: {
-		margin: 8
+		marginTop: 8
 	},
 	chip: {
 		marginTop: 8
 	},
 	typographyTitle: {
+		marginTop: 14,
 		color: 'white',
 		fontWeight: 'bold'
 	}
@@ -23,13 +24,15 @@ const SearchBar = () => {
 	};
 	return (
 		<Grid container spacing={2} className={classes.root}>
-			<Grid item xs={6}>
-				<Typography className={classes.typographyTitle}>DASHBOARD</Typography>
-			</Grid>
-			<Grid item xs={4}>
+			<Hidden smDown>
+				<Grid item md={3} lg={6}>
+					<Typography className={classes.typographyTitle}>DASHBOARD</Typography>
+				</Grid>
+			</Hidden>
+			<Grid item xs={8} md={6} lg={4}>
 				<Search />
 			</Grid>
-			<Grid item xs={2}>
+			<Grid item xs={4} md={3} lg={2}>
 				<Tooltip title="Cerrar sesión" className={classes.chip}>
 					<Chip
 						avatar={
