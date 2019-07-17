@@ -9,18 +9,18 @@
 /**
  * @file index
  * @description root component
- * @module app/src/index.jsx
+ * @module index.jsx
  */
 import React from 'react';
+import theme from 'theme';
+import store from 'store';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { ThemeProvider } from '@material-ui/styles';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom';
+import Main from 'Main.jsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Main from './Main.jsx';
-import store from './store';
-import theme from './theme';
+import * as serviceWorker from 'serviceWorker';
+import { ThemeProvider } from '@material-ui/styles';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 /**
  * wrapper themeProvider for style theme in the app

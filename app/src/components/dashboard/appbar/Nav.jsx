@@ -13,8 +13,23 @@
  * @module app/src/components/dashboard/appbar/Nav.jsx
  */
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import InboxIcon from '@material-ui/icons/Inbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import {
+	AppBar,
+	Typography,
+	IconButton,
+	makeStyles,
+	ExpansionPanel,
+	ExpansionPanelDetails,
+	ExpansionPanelSummary,
+	List,
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	Divider
+} from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -25,42 +40,67 @@ const useStyles = makeStyles(theme => ({
 			width: `calc(100% - ${drawerWidth}px)`
 		}
 	},
-	menuButton: {
-		marginRight: theme.spacing(2),
-		[theme.breakpoints.up('sm')]: {
-			display: 'none'
-		}
+	list: {
+		width: '100%'
 	}
 }));
 
-const Nav = ({ handleDrawerToggle }) => {
+const Nav = ({ open }) => {
 	const classes = useStyles();
 
 	return (
 		<AppBar position="fixed" className={classes.appBar}>
-			<Toolbar>
-				<IconButton
-					color="inherit"
-					aria-label="Open drawer"
-					edge="start"
-					onClick={handleDrawerToggle}
-					className={classes.menuButton}
+			<ExpansionPanel>
+				<ExpansionPanelSummary
+					style={{ display: 'flex' }}
+					aria-controls="panel1a-content"
+					id="panel1a-header"
 				>
-					<MenuIcon />
-				</IconButton>
-				<Typography
-					variant="h5"
-					component="h1"
-					style={{
-						fontWeight: 'bold',
-						color: 'rgba(0, 12, 78, 1)',
-						fontFamily: '"Notable", sans-serif',
-						textAlign: 'center'
-					}}
-				>
-					Mywebsite
-				</Typography>
-			</Toolbar>
+					<Typography
+						variant="h5"
+						component="h1"
+						style={{
+							paddingTop: 5,
+							fontWeight: 'bold',
+							color: 'rgba(0, 12, 78, 1)',
+							fontFamily: '"Notable", sans-serif',
+							flexGrow: 1
+						}}
+					>
+						Mywebsite
+					</Typography>
+					<IconButton
+						color="inherit"
+						aria-label="Open drawer"
+						edge="start"
+						onClick={open}
+					>
+						<MenuIcon />
+					</IconButton>
+				</ExpansionPanelSummary>
+				<Divider />
+				<ExpansionPanelDetails>
+					<List
+						className={classes.list}
+						component="nav"
+						aria-label="Main mailbox folders"
+					>
+						<ListItem button>
+							<ListItemIcon>
+								<InboxIcon style={{ color: 'cyan' }} />
+							</ListItemIcon>
+							<ListItemText primary="Inbox" />
+						</ListItem>
+						<Divider />
+						<ListItem button>
+							<ListItemIcon>
+								<DraftsIcon style={{ color: 'orange' }} />
+							</ListItemIcon>
+							<ListItemText primary="Drafts" />
+						</ListItem>
+					</List>
+				</ExpansionPanelDetails>
+			</ExpansionPanel>
 		</AppBar>
 	);
 };

@@ -13,11 +13,11 @@
  * @module app/src/Main.jsx
  */
 import React from 'react';
-import Dashboard from './components/dashboard/Dashboard.jsx';
-import Auth from './components/auth/Auth.jsx';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import Dashboard from 'components/dashboard/Dashboard.jsx';
+import Auth from 'components/auth/Auth.jsx';
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
 import { loggedIn } from 'services/auth';
-
+import NoMatch from 'components/404';
 /**
  * component wrapper for the private routes
  * @param {Object} Component
@@ -36,7 +36,9 @@ const Main = () => {
 	return (
 		<Switch>
 			<PrivateRoute exact path="/" component={Dashboard} />
+			<Route path="/dashboard" render={() => <Redirect to="/" />} />
 			<Route path="/authentication" component={Auth} />
+			<Route component={NoMatch} />
 		</Switch>
 	);
 };

@@ -1,3 +1,18 @@
+/**
+	 __  __                    _         _ _
+	|  \/  |_   ___      _____| |__  ___(_) |_ ___
+	| |\/| | | | \ \ /\ / / _ \ '_ \/ __| | __/ _ \
+	| |  | | |_| |\ V  V /  __/ |_) \__ \ | ||  __/
+	|_|  |_|\__, | \_/\_/ \___|_.__/|___/_|\__\___|
+			|___/
+ */
+/**
+ * @file Sidebar
+ * @description Sidebar showing only in desktop
+ * @param {Object} props
+ * @module components/dashboard/sidebar/Sidebar.jsx
+ *
+ */
 import React from 'react';
 import {
 	Typography,
@@ -8,13 +23,12 @@ import {
 	ListItemIcon,
 	ListItemText,
 	makeStyles,
-	useTheme,
 	Fab
 } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MapIcon from '@material-ui/icons/Map';
 import TabIcon from '@material-ui/icons/Tab';
-import Menu from './Menu.jsx';
+import UserIcon from '@material-ui/icons/AccountCircle';
 
 const drawerWidth = 240;
 
@@ -43,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Sidebar = ({ container, handleDrawerToggle, mobileOpen }) => {
+const Sidebar = ({ container }) => {
 	const classes = useStyles();
 	const drawer = (
 		<div>
@@ -74,13 +88,19 @@ const Sidebar = ({ container, handleDrawerToggle, mobileOpen }) => {
 					<ListItemIcon>
 						<TabIcon style={{ color: 'cyan' }} />
 					</ListItemIcon>
-					<ListItemText primary="icons" />
+					<ListItemText primary="Icons" />
 				</ListItem>
 				<ListItem button>
 					<ListItemIcon>
 						<MapIcon style={{ color: 'orange' }} />
 					</ListItemIcon>
-					<ListItemText primary="map" />
+					<ListItemText primary="Map" />
+				</ListItem>
+				<ListItem button>
+					<ListItemIcon>
+						<UserIcon style={{ color: 'purple' }} />
+					</ListItemIcon>
+					<ListItemText primary="Profile" />
 				</ListItem>
 			</List>
 		</div>
@@ -88,9 +108,6 @@ const Sidebar = ({ container, handleDrawerToggle, mobileOpen }) => {
 
 	return (
 		<div className={classes.root}>
-			<Hidden smUp implementation="css">
-				<Menu open={mobileOpen} onClose={handleDrawerToggle} />
-			</Hidden>
 			<nav className={classes.drawer} aria-label="Mailbox folders">
 				{/* The implementation can be swapped with js to avoid SEO duplication of links. */}
 				<Hidden xsDown implementation="css">

@@ -12,19 +12,20 @@
  * @param {Object} props
  * @module app/src/components/auth/Auth.jsx
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import SignIn from './signin/Signin.jsx';
 import SignUp from './signup/Signup.jsx';
+import { loggedIn } from 'services/auth';
 import {
-	Tab,
-	Tabs,
-	Grid,
 	Typography,
-	CardActions,
-	AppBar,
-	Card,
+	Tabs,
+	Tab,
 	makeStyles,
-	Link
+	Link,
+	Grid,
+	CardActions,
+	Card,
+	AppBar
 } from '@material-ui/core';
 import './background.css';
 
@@ -46,9 +47,13 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Auth = props => {
+const Auth = ({ history }) => {
 	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
+
+	useEffect(() => {
+		if (loggedIn()) history.replace('/');
+	}, [history]);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
