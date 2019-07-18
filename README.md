@@ -1,6 +1,6 @@
 STORE MERN + DOCKER
 
-![captura de la app](./.readme-static/readme.png)
+![login page](./.readme-static/readme.png)
 
 ## Available Scripts
 
