@@ -16,6 +16,8 @@ services:
       - "3001:3001" # specify port mapping
     environment:
       PORT: 3001
+      DB_CONNECT: mongodb://mongodb:27017/mern
+      TOKEN_SECRET: gjh123kjhklhjlkjkfds
     links:
       - database
 
