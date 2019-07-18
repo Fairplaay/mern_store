@@ -13,51 +13,47 @@
  * @module components/dashboard/cards/Info.jsx
  */
 import React from 'react';
-import { Typography, Grid, Card } from '@material-ui/core';
+import { Typography, Grid, Card, CardHeader, Avatar, CardActions } from '@material-ui/core';
+import UserSharkIcon from '@material-ui/icons/SupervisedUserCircleSharp';
+import ArrowUpIcon from '@material-ui/icons/ArrowUpward';
 
 const Info = () => {
 	return (
-		<Grid container spacing={10}>
-			<Grid item xs={12} sm={12} md={6} lg={3}>
-				<Card
-					style={{
-						marginTop: '140px',
-						padding: '10px'
-					}}
-				>
-					<Typography color="textSecondary">TRAFFIC</Typography>
-				</Card>
-			</Grid>
-			<Grid item xs={12} sm={12} md={6} lg={3}>
-				<Card
-					style={{
-						marginTop: '140px',
-						padding: '10px'
-					}}
-				>
-					<Typography color="textSecondary">NEW USER</Typography>
-				</Card>
-			</Grid>
-			<Grid item xs={12} sm={12} md={6} lg={3}>
-				<Card
-					style={{
-						marginTop: '140px',
-						padding: '10px'
-					}}
-				>
-					<Typography color="textSecondary">SALES</Typography>
-				</Card>
-			</Grid>
-			<Grid item xs={12} sm={12} md={6} lg={3}>
-				<Card
-					style={{
-						marginTop: '140px',
-						padding: '10px'
-					}}
-				>
-					<Typography color="textSecondary">PERFORMANCE</Typography>
-				</Card>
-			</Grid>
+		<Grid container spacing={6}>
+			{[1, 2, 3, 4].map((item, i) => (
+				<Grid key={i} item xs={12} md={6} lg={3}>
+					<Card
+						style={{
+							marginTop: '140px',
+							padding: '10px'
+						}}
+					>
+						<CardHeader
+							style={{ paddingBottom: 0 }}
+							action={
+								<Avatar style={{ backgroundColor: 'orange', marginTop: 16 }}>
+									<UserSharkIcon style={{ color: 'white' }} />
+								</Avatar>
+							}
+							title="350,897"
+							subheader="Traffic"
+						></CardHeader>
+						<CardActions disableSpacing={true}>
+							<Grid container>
+								<Grid item sm={1}>
+									<ArrowUpIcon style={{ color: 'green', fontSize: 14 }} />
+								</Grid>
+								<Grid item sm={3} style={{ color: 'green' }}>
+									3.48%
+								</Grid>
+								<Grid item sm={7}>
+									Since last
+								</Grid>
+							</Grid>
+						</CardActions>
+					</Card>
+				</Grid>
+			))}
 		</Grid>
 	);
 };
