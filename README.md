@@ -1,4 +1,5 @@
-STORE MERN + DOCKER
+# store + dashboard
+MERN + DOCKER
 
 ![login page](./.readme-static/readme.png)
 
