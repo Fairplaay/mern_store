@@ -1,6 +1,17 @@
-Scafold MERN + DOCKER
+STORE MERN + DOCKER
+
+![captura de la app](./.readme-static/readme.png)
 
 ## Available Scripts
+
+clone repository
+### `git clone`
+
+install dependencies in the backend
+### `cd api && npm i`
+
+install dependencies in the frontend
+### `cd app && npm i`
 
 In the project directory, you can run:
 
