@@ -41,13 +41,6 @@ const useStyles = makeStyles(theme => ({
 		[theme.breakpoints.up('sm')]: {
 			height: 380
 		}
-	},
-	buttonProgress: {
-		color: theme.palette.secondary,
-		position: 'absolute',
-		bottom: 20,
-		width: 310,
-		margin: theme.spacing(3, 0, 3, 18)
 	}
 }));
 
@@ -111,7 +104,6 @@ const SingIn = ({ handleSubmit, pristine, submitting, history }) => {
 				>
 					Ingresar
 				</Button>
-				{submitting && <CircularProgress size={24} className={classes.buttonProgress} />}
 			</form>
 		</CardContent>
 	);
