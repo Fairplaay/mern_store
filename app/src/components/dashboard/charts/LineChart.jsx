@@ -108,8 +108,10 @@ const LineChart = props => {
 	const refCanvas = useRef();
 
 	useEffect(() => {
-		// get the context of canvas 2d
-		// create chart
+		/**
+		 * Get the context of canvas 2d
+		 * Create chart if ctx its not empty
+		 */
 		setCtx(refCanvas.current.getContext('2d'));
 		if (ctx !== null) {
 			setChart(
@@ -136,7 +138,9 @@ const LineChart = props => {
 	}, [ctx]);
 
 	useEffect(() => {
-		// if chart.data exist and the toggle is change
+		/**
+		 * Update chart when buttom toggle change
+		 */
 		if (chart.data) {
 			if (toggle === 1) {
 				chart.data.datasets[0].data = data.past_month_data;
