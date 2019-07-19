@@ -7,27 +7,22 @@
 			|___/
  */
 /**
- * @file Info
+ * @file Cards
  * @description container info cards
  * @param {Object} props
- * @module components/dashboard/cards/Info.jsx
+ * @module components/dashboard/cards/Cards.jsx
  */
 import React from 'react';
-import { Typography, Grid, Card, CardHeader, Avatar, CardActions } from '@material-ui/core';
+import { Grid, Card, CardHeader, Avatar, CardActions } from '@material-ui/core';
 import UserSharkIcon from '@material-ui/icons/SupervisedUserCircleSharp';
 import DataUsageIcon from '@material-ui/icons/DataUsageRounded';
 
-const Info = () => {
+const Cards = () => {
 	return (
 		<Grid container spacing={6}>
 			{[1, 2, 3, 4].map((item, i) => (
 				<Grid key={i} item xs={12} md={6} lg={3}>
-					<Card
-						style={{
-							marginTop: '140px',
-							padding: '10px'
-						}}
-					>
+					<Card>
 						<CardHeader
 							style={{ paddingBottom: 0 }}
 							action={
@@ -58,4 +53,4 @@ const Info = () => {
 	);
 };
 
-export default Info;
+export default Cards;

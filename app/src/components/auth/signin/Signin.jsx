@@ -19,7 +19,7 @@ import { withRouter } from 'react-router-dom';
 import { login } from 'services/auth';
 import { Field, reduxForm } from 'redux-form';
 import { emailRegex, passwordRegex } from 'plugins/regex';
-import { Button, CardContent, makeStyles, CircularProgress } from '@material-ui/core';
+import { Button, CardContent, makeStyles } from '@material-ui/core';
 
 /**
  * style for component

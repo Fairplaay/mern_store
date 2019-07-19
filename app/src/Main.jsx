@@ -15,7 +15,7 @@
 import React from 'react';
 import Dashboard from 'components/dashboard/Dashboard.jsx';
 import Auth from 'components/auth/Auth.jsx';
-import { Route, Switch, Redirect, Link } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { loggedIn } from 'services/auth';
 import NoMatch from 'components/404';
 /**

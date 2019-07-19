@@ -13,11 +13,12 @@
  * @module components/dashboard/Dashboard.jsx
  */
 import React, { useState } from 'react';
-import Sidebar from './sidebar/Sidebar.jsx';
-import Nav from './appbar/Nav.jsx';
-import Info from './cards/Info.jsx';
-import SearchBar from './searchbar/SearchBar.jsx';
-import { Hidden, Container, makeStyles } from '@material-ui/core';
+import Sidebar from 'components/dashboard/sidebar/Sidebar';
+import SearchBar from 'components/dashboard/searchbar/SearchBar';
+import Nav from 'components/dashboard/appbar/Nav.jsx';
+import Charts from 'components/dashboard/charts/LineChart';
+import Cards from 'components/dashboard/cards/Cards';
+import { Hidden, Container, makeStyles, Grid } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -57,8 +58,20 @@ const Dashboard = ({ history }) => {
 			</Hidden>
 			<div className={classes.container}>
 				<Container>
-					<SearchBar />
-					<Info />
+					<Grid container spacing={8}>
+						<Grid item xs={12}>
+							<SearchBar />
+						</Grid>
+						<Grid item xs={12}>
+							<Cards />
+						</Grid>
+						<Grid item xs={12} sm={12} lg={8}>
+							<Charts />
+						</Grid>
+						<Grid item xs={12} sm={6} lg={4}>
+							<Charts />
+						</Grid>
+					</Grid>
 				</Container>
 			</div>
 		</div>

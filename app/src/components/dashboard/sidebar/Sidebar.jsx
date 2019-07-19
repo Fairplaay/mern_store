@@ -22,8 +22,7 @@ import {
 	ListItem,
 	ListItemIcon,
 	ListItemText,
-	makeStyles,
-	Fab
+	makeStyles
 } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MapIcon from '@material-ui/icons/Map';
@@ -73,9 +72,6 @@ const Sidebar = ({ container }) => {
 				>
 					Mywebsite
 				</Typography>
-				<Fab color="secondary" aria-label=".com" size="small">
-					<Typography variant="overline">.com</Typography>
-				</Fab>
 			</div>
 			<List>
 				<ListItem button>
