@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, makeStyles, Grid, Chip, Typography, Tooltip, Hidden } from '@material-ui/core';
 import Search from './Search.jsx';
 import { logout } from 'services/auth';
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		marginTop: 8
@@ -15,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 		fontWeight: 'bold'
 	}
 }));
-const SearchBar = () => {
+const SearchBar = props => {
 	const classes = useStyles();
 
 	const handleCloseSesion = async () => {

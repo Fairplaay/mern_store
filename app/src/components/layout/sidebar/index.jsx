@@ -18,16 +18,17 @@ import {
 	Typography,
 	Drawer,
 	Hidden,
-	List,
-	ListItem,
 	ListItemIcon,
 	ListItemText,
+	MenuList,
+	MenuItem,
 	makeStyles
 } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MapIcon from '@material-ui/icons/Map';
 import TabIcon from '@material-ui/icons/Tab';
 import UserIcon from '@material-ui/icons/AccountCircle';
+import { withRouter, Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -56,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Sidebar = ({ container }) => {
+const Sidebar = props => {
 	const classes = useStyles();
 	const drawer = (
 		<div>
@@ -73,32 +74,40 @@ const Sidebar = ({ container }) => {
 					Mywebsite
 				</Typography>
 			</div>
-			<List>
-				<ListItem button>
+			<MenuList>
+				<MenuItem component={Link} to="/" selected={'/' === props.location.pathname}>
 					<ListItemIcon>
 						<InboxIcon style={{ color: 'yellow' }} />
 					</ListItemIcon>
 					<ListItemText primary="Dashboard" />
-				</ListItem>
-				<ListItem button>
+				</MenuItem>
+				<MenuItem>
 					<ListItemIcon>
 						<TabIcon style={{ color: 'cyan' }} />
 					</ListItemIcon>
 					<ListItemText primary="Icons" />
-				</ListItem>
-				<ListItem button>
+				</MenuItem>
+				<MenuItem
+					component={Link}
+					to="/maps"
+					selected={'/maps' === props.location.pathname}
+				>
 					<ListItemIcon>
 						<MapIcon style={{ color: 'orange' }} />
 					</ListItemIcon>
 					<ListItemText primary="Map" />
-				</ListItem>
-				<ListItem button>
+				</MenuItem>
+				<MenuItem
+					component={Link}
+					to="/profile"
+					selected={'/profile' === props.location.pathname}
+				>
 					<ListItemIcon>
 						<UserIcon style={{ color: 'purple' }} />
 					</ListItemIcon>
 					<ListItemText primary="Profile" />
-				</ListItem>
-			</List>
+				</MenuItem>
+			</MenuList>
 		</div>
 	);
 
@@ -122,4 +131,4 @@ const Sidebar = ({ container }) => {
 	);
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);

@@ -15,7 +15,7 @@
 import React from 'react';
 import { Grid, Card, CardHeader, Avatar, CardActions } from '@material-ui/core';
 import UserSharkIcon from '@material-ui/icons/SupervisedUserCircleSharp';
-import DataUsageIcon from '@material-ui/icons/DataUsageRounded';
+import ArrowUpIcon from '@material-ui/icons/ArrowDropUp';
 
 const Cards = () => {
 	return (
@@ -36,7 +36,7 @@ const Cards = () => {
 						<CardActions disableSpacing={true}>
 							<Grid container>
 								<Grid item sm={1}>
-									<DataUsageIcon style={{ color: 'green', fontSize: 14 }} />
+									<ArrowUpIcon style={{ color: 'green', fontSize: 14 }} />
 								</Grid>
 								<Grid item sm={3} style={{ color: 'green' }}>
 									3.48%

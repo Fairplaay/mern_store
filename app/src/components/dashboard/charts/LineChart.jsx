@@ -1,7 +1,23 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
-import { Card, Divider, CardHeader, Typography, Button } from '@material-ui/core';
+import {
+	Card,
+	Divider,
+	CardHeader,
+	Typography,
+	Button,
+	makeStyles,
+	useMediaQuery
+} from '@material-ui/core';
 import Chart from 'chart.js';
-import './LineChart.css';
+
+const useStyles = makeStyles(theme => ({
+	buttons: {
+		borderColor: 'white',
+		borderRadius: 10,
+		margin: 8,
+		textTransform: 'none'
+	}
+}));
 
 /**
  * mock data
@@ -77,6 +93,9 @@ const data = {
  * options for chart
  */
 const chartOptions = {
+	legend: {
+		display: false
+	},
 	scales: {
 		yAxes: [
 			{
@@ -100,10 +119,12 @@ const chartOptions = {
 };
 
 const LineChart = props => {
+	const classes = useStyles();
 	const [toggle, setToggle] = useState(0);
 	const [ctx, setCtx] = useState(null);
 	const [chart, setChart] = useState({});
-
+	// small devices
+	const sm = useMediaQuery('(min-width:600px)');
 	// ref dom element canvas
 	const refCanvas = useRef();
 
@@ -170,28 +191,20 @@ const LineChart = props => {
 					action={
 						<Fragment>
 							<Button
+								size="small"
 								onClick={() => setToggle(0)}
-								style={{
-									borderColor: 'white',
-									borderRadius: 10,
-									margin: 8,
-									textTransform: 'none'
-								}}
+								className={classes.buttons}
 								variant={toggle === 0 ? 'contained' : 'outlined'}
 							>
-								Current month
+								{sm ? 'Current month' : 'CM'}
 							</Button>
 							<Button
+								size="small"
 								onClick={() => setToggle(1)}
-								style={{
-									borderColor: 'white',
-									borderRadius: 10,
-									margin: 8,
-									textTransform: 'none'
-								}}
+								className={classes.buttons}
 								variant={toggle === 0 ? 'outlined' : 'contained'}
 							>
-								Past month
+								{sm ? 'Past month' : 'PM'}
 							</Button>
 						</Fragment>
 					}

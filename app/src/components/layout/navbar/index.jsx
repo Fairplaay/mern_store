@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Nav = ({ open }) => {
+const NavBar = ({ open }) => {
 	const classes = useStyles();
 
 	return (
@@ -105,4 +105,4 @@ const Nav = ({ open }) => {
 	);
 };
 
-export default Nav;
+export default NavBar;

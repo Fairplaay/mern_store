@@ -13,29 +13,32 @@
  * @module app/src/Main.jsx
  */
 import React from 'react';
-import Dashboard from 'components/dashboard/Dashboard.jsx';
-import Auth from 'components/auth/Auth.jsx';
+import Dashboard from 'components/dashboard';
+import Maps from 'components/maps';
+import Profile from 'components/profile';
+import Auth from 'components/auth';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { loggedIn } from 'services/auth';
 import NoMatch from 'components/404';
-/**
- * component wrapper for the private routes
- * @param {Object} Component
- * @param {*} rest
- */
-const PrivateRoute = ({ component: Component, ...rest }) => (
+import Layout from 'components/layout';
+import { loggedIn } from 'services/auth';
+
+const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
 	<Route
 		{...rest}
-		render={props =>
-			loggedIn() === true ? <Component {...props} /> : <Redirect to="/authentication" />
-		}
+		render={props => (
+			<Layout>
+				{loggedIn() === true ? <Component {...props} /> : <Redirect to="/authentication" />}
+			</Layout>
+		)}
 	/>
 );
 
-const Main = () => {
+const Main = props => {
 	return (
 		<Switch>
-			<PrivateRoute exact path="/" component={Dashboard} />
+			<AppRoute exact path="/" layout={Layout} component={Dashboard} name="Dashboard" />
+			<AppRoute path="/profile" layout={Layout} component={Profile} />
+			<AppRoute path="/maps" layout={Layout} component={Maps} />
 			<Route path="/dashboard" render={() => <Redirect to="/" />} />
 			<Route path="/authentication" component={Auth} />
 			<Route component={NoMatch} />
