@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Sidebar = props => {
+const Sidebar = ({ location: { pathname } }) => {
 	const classes = useStyles();
 	const drawer = (
 		<div>
@@ -75,7 +75,7 @@ const Sidebar = props => {
 				</Typography>
 			</div>
 			<MenuList>
-				<MenuItem component={Link} to="/" selected={'/' === props.location.pathname}>
+				<MenuItem component={Link} to="/" selected={'/' === pathname}>
 					<ListItemIcon>
 						<InboxIcon style={{ color: 'yellow' }} />
 					</ListItemIcon>
@@ -87,21 +87,13 @@ const Sidebar = props => {
 					</ListItemIcon>
 					<ListItemText primary="Icons" />
 				</MenuItem>
-				<MenuItem
-					component={Link}
-					to="/maps"
-					selected={'/maps' === props.location.pathname}
-				>
+				<MenuItem component={Link} to="/maps" selected={'/maps' === pathname}>
 					<ListItemIcon>
 						<MapIcon style={{ color: 'orange' }} />
 					</ListItemIcon>
 					<ListItemText primary="Map" />
 				</MenuItem>
-				<MenuItem
-					component={Link}
-					to="/profile"
-					selected={'/profile' === props.location.pathname}
-				>
+				<MenuItem component={Link} to="/profile" selected={'/profile' === pathname}>
 					<ListItemIcon>
 						<UserIcon style={{ color: 'purple' }} />
 					</ListItemIcon>

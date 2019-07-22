@@ -15,7 +15,7 @@
 import React from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
+
 import {
 	AppBar,
 	Typography,
@@ -24,12 +24,16 @@ import {
 	ExpansionPanel,
 	ExpansionPanelDetails,
 	ExpansionPanelSummary,
-	List,
-	ListItem,
 	ListItemIcon,
 	ListItemText,
-	Divider
+	Divider,
+	MenuItem,
+	MenuList
 } from '@material-ui/core';
+import MapIcon from '@material-ui/icons/Map';
+import TabIcon from '@material-ui/icons/Tab';
+import UserIcon from '@material-ui/icons/AccountCircle';
+import { withRouter, Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -41,16 +45,17 @@ const useStyles = makeStyles(theme => ({
 		}
 	},
 	list: {
-		width: '100%'
+		width: '100%',
+		paddingBottom: 0
 	}
 }));
 
-const NavBar = ({ open }) => {
+const NavBar = ({ open, handleToggleButtom, location: { pathname } }) => {
 	const classes = useStyles();
 
 	return (
 		<AppBar position="fixed" className={classes.appBar}>
-			<ExpansionPanel>
+			<ExpansionPanel expanded={open}>
 				<ExpansionPanelSummary
 					style={{ display: 'flex' }}
 					aria-controls="panel1a-content"
@@ -73,36 +78,58 @@ const NavBar = ({ open }) => {
 						color="inherit"
 						aria-label="Open drawer"
 						edge="start"
-						onClick={open}
+						onClick={handleToggleButtom}
 					>
 						<MenuIcon />
 					</IconButton>
 				</ExpansionPanelSummary>
 				<Divider />
-				<ExpansionPanelDetails>
-					<List
-						className={classes.list}
-						component="nav"
-						aria-label="Main mailbox folders"
-					>
-						<ListItem button>
+				<ExpansionPanelDetails style={{ padding: '8px 0 0' }}>
+					<MenuList className={classes.list}>
+						<MenuItem
+							component={Link}
+							to="/"
+							selected={'/' === pathname}
+							onClick={handleToggleButtom}
+						>
 							<ListItemIcon>
-								<InboxIcon style={{ color: 'cyan' }} />
+								<InboxIcon style={{ color: 'yellow' }} />
 							</ListItemIcon>
-							<ListItemText primary="Inbox" />
-						</ListItem>
-						<Divider />
-						<ListItem button>
+							<ListItemText primary="Dashboard" />
+						</MenuItem>
+						<MenuItem onClick={handleToggleButtom}>
 							<ListItemIcon>
-								<DraftsIcon style={{ color: 'orange' }} />
+								<TabIcon style={{ color: 'cyan' }} />
 							</ListItemIcon>
-							<ListItemText primary="Drafts" />
-						</ListItem>
-					</List>
+							<ListItemText primary="Icons" />
+						</MenuItem>
+						<MenuItem
+							component={Link}
+							to="/maps"
+							selected={'/maps' === pathname}
+							onClick={handleToggleButtom}
+						>
+							<ListItemIcon>
+								<MapIcon style={{ color: 'orange' }} />
+							</ListItemIcon>
+							<ListItemText primary="Map" />
+						</MenuItem>
+						<MenuItem
+							component={Link}
+							to="/profile"
+							selected={'/profile' === pathname}
+							onClick={handleToggleButtom}
+						>
+							<ListItemIcon>
+								<UserIcon style={{ color: 'purple' }} />
+							</ListItemIcon>
+							<ListItemText primary="Profile" />
+						</MenuItem>
+					</MenuList>
 				</ExpansionPanelDetails>
 			</ExpansionPanel>
 		</AppBar>
 	);
 };
 
-export default NavBar;
+export default withRouter(NavBar);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from 'components/layout/sidebar';
-import SearchBar from 'components/layout/searchbar';
-import NavBar from 'components/layout/navbar';
+import SearchBar from 'components/layout/navbar-desktop';
+import NavBar from 'components/layout/navbar-mobile';
 import { Hidden, Container, makeStyles, Grid } from '@material-ui/core';
 
 const drawerWidth = 240;
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Layout = props => {
+const Layout = ({ children, name }) => {
 	const classes = useStyles();
 	const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -31,11 +31,11 @@ const Layout = props => {
 	 * change state for mobileOpen
 	 * @return {Boolean}
 	 */
-	const handleModalToggle = () => setMobileOpen(!mobileOpen);
+	const handleToggleButtom = () => setMobileOpen(!mobileOpen);
 	return (
 		<div className={classes.background}>
 			<Hidden smUp>
-				<NavBar handleDrawerToggle={handleModalToggle} />
+				<NavBar open={mobileOpen} handleToggleButtom={handleToggleButtom} />
 			</Hidden>
 			<Hidden xsDown implementation="css">
 				<Sidebar />
@@ -44,10 +44,10 @@ const Layout = props => {
 				<Container>
 					<Grid container spacing={8}>
 						<Grid item xs={12}>
-							<SearchBar />
+							<SearchBar name={name.toUpperCase()} />
 						</Grid>
 					</Grid>
-					{props.children}
+					{children}
 				</Container>
 			</div>
 		</div>

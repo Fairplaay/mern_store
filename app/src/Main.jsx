@@ -22,11 +22,11 @@ import NoMatch from 'components/404';
 import Layout from 'components/layout';
 import { loggedIn } from 'services/auth';
 
-const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
+const AppRoute = ({ component: Component, layout: Layout, name, ...rest }) => (
 	<Route
 		{...rest}
 		render={props => (
-			<Layout>
+			<Layout name={name}>
 				{loggedIn() === true ? <Component {...props} /> : <Redirect to="/authentication" />}
 			</Layout>
 		)}
@@ -36,9 +36,9 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
 const Main = props => {
 	return (
 		<Switch>
-			<AppRoute exact path="/" layout={Layout} component={Dashboard} name="Dashboard" />
-			<AppRoute path="/profile" layout={Layout} component={Profile} />
-			<AppRoute path="/maps" layout={Layout} component={Maps} />
+			<AppRoute exact path="/" layout={Layout} component={Dashboard} name="dashboard" />
+			<AppRoute path="/profile" layout={Layout} component={Profile} name="profile" />
+			<AppRoute path="/maps" layout={Layout} component={Maps} name="maps" />
 			<Route path="/dashboard" render={() => <Redirect to="/" />} />
 			<Route path="/authentication" component={Auth} />
 			<Route component={NoMatch} />

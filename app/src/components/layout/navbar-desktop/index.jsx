@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 		fontWeight: 'bold'
 	}
 }));
-const SearchBar = props => {
+const SearchBar = ({ name }) => {
 	const classes = useStyles();
 
 	const handleCloseSesion = async () => {
@@ -27,7 +27,7 @@ const SearchBar = props => {
 		<Grid container spacing={2} className={classes.root}>
 			<Hidden smDown>
 				<Grid item md={3} lg={6}>
-					<Typography className={classes.typographyTitle}>DASHBOARD</Typography>
+					<Typography className={classes.typographyTitle}>{name}</Typography>
 				</Grid>
 			</Hidden>
 			<Grid item xs={8} md={6} lg={4}>
