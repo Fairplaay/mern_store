@@ -111,7 +111,12 @@ const Auth = ({ history }) => {
 								handleSnackBar={setHandleSnackBar}
 							/>
 						)}
-						{value === 1 && <SignUp />}
+						{value === 1 && (
+							<SignUp
+								setErrorMessage={setErrorMessage}
+								handleSnackBar={setHandleSnackBar}
+							/>
+						)}
 						{/** card actions */}
 						{value === 0 && (
 							<CardActions>

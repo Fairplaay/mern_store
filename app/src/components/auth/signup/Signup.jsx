@@ -66,16 +66,29 @@ const validate = values => {
 	return errors;
 };
 
-const Signup = ({ handleSubmit, pristine, submitting, history }) => {
+const Signup = ({
+	handleSubmit,
+	pristine,
+	submitting,
+	history,
+	setErrorMessage,
+	handleSnackBar
+}) => {
 	const classes = useStyles();
+
+	const submit = values => {
+		register(values, history).then(response => {
+			// Handle errors in response req
+			if (response.request.status === 400) {
+				setErrorMessage(response.data);
+				handleSnackBar(true);
+			}
+		});
+	};
 
 	return (
 		<CardContent className={classes.cardContent}>
-			<form
-				className={classes.form}
-				onSubmit={handleSubmit(values => register(values, history))}
-				noValidate
-			>
+			<form className={classes.form} onSubmit={handleSubmit(submit)} noValidate>
 				<Grid container spacing={1}>
 					<Grid item xs={6}>
 						<Field

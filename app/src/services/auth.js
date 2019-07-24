@@ -19,8 +19,9 @@ export const register = async (data, history) => {
 		const response = await axios.post(url, data);
 		await setToken(response.data.token);
 		history.push('/');
+		return response;
 	} catch (err) {
-		console.log(err);
+		return err.response;
 	}
 };
 
