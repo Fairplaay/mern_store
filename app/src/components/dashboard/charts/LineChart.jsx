@@ -12,10 +12,7 @@ import Chart from 'chart.js';
 
 const useStyles = makeStyles(theme => ({
 	buttons: {
-		borderColor: 'white',
-		borderRadius: 10,
-		margin: 8,
-		textTransform: 'none'
+		margin: 8
 	}
 }));
 
@@ -192,6 +189,7 @@ const LineChart = props => {
 						<Fragment>
 							<Button
 								size="small"
+								color={toggle === 0 && 'secondary'}
 								onClick={() => setToggle(0)}
 								className={classes.buttons}
 								variant={toggle === 0 ? 'contained' : 'outlined'}
@@ -200,6 +198,7 @@ const LineChart = props => {
 							</Button>
 							<Button
 								size="small"
+								color={toggle === 1 && 'secondary'}
 								onClick={() => setToggle(1)}
 								className={classes.buttons}
 								variant={toggle === 0 ? 'outlined' : 'contained'}
