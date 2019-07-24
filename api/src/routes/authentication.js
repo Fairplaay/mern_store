@@ -52,7 +52,7 @@ routes.post('/signin', async (req, res) => {
 
     // password is correct
     const validPassword = await bcrypt.compare(data.password, user.password);
-    if (!validPassword) return res.status(400).sed('invalid password');
+    if (!validPassword) return res.status(400).send('invalid password');
 
     // create and assign token
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET); // eslint-disable-line

@@ -7,8 +7,9 @@ export const login = async (data, history) => {
 		const response = await axios.post(url, data);
 		await setToken(response.data.token);
 		history.push('/');
+		return response;
 	} catch (err) {
-		throw err;
+		return err.response;
 	}
 };
 
@@ -19,7 +20,7 @@ export const register = async (data, history) => {
 		await setToken(response.data.token);
 		history.push('/');
 	} catch (err) {
-		throw err;
+		console.log(err);
 	}
 };
 

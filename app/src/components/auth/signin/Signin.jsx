@@ -66,15 +66,29 @@ const validate = values => {
 	return errors;
 };
 
-const SingIn = ({ handleSubmit, pristine, submitting, history }) => {
+const SingIn = ({
+	handleSubmit,
+	pristine,
+	submitting,
+	history,
+	setErrorMessage,
+	handleSnackBar
+}) => {
 	const classes = useStyles();
+
+	const submit = values => {
+		login(values, history).then(response => {
+			// Handle errors in response req
+			if (response.request.status === 400) {
+				setErrorMessage(response.data);
+				handleSnackBar(true);
+			}
+		});
+	};
 
 	return (
 		<CardContent className={classes.cardContent}>
-			<form
-				className={classes.form}
-				onSubmit={handleSubmit(values => login(values, history))}
-			>
+			<form className={classes.form} onSubmit={handleSubmit(submit)}>
 				<Field
 					id="email"
 					label="Correo eletrónico"

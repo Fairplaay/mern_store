@@ -12,10 +12,11 @@
  * @param {Object} props
  * @module app/src/components/auth/Auth.jsx
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SignIn from './signin/Signin.jsx';
 import SignUp from './signup/Signup.jsx';
 import { loggedIn } from 'services/auth';
+import Toast from 'components/toast';
 import {
 	Typography,
 	Tabs,
@@ -26,7 +27,8 @@ import {
 	CardActions,
 	Card,
 	AppBar,
-	CardHeader
+	CardHeader,
+	Snackbar
 } from '@material-ui/core';
 import './background.css';
 
@@ -50,7 +52,9 @@ const useStyles = makeStyles(theme => ({
 
 const Auth = ({ history }) => {
 	const classes = useStyles();
-	const [value, setValue] = React.useState(0);
+	const [value, setValue] = useState(0);
+	const [error, setErrorMessage] = useState('');
+	const [handleSnakbar, setHandleSnackBar] = useState(false);
 
 	useEffect(() => {
 		if (loggedIn()) history.replace('/');
@@ -101,7 +105,12 @@ const Auth = ({ history }) => {
 							}
 						></CardHeader>
 						{/** card contents */}
-						{value === 0 && <SignIn />}
+						{value === 0 && (
+							<SignIn
+								setErrorMessage={setErrorMessage}
+								handleSnackBar={setHandleSnackBar}
+							/>
+						)}
 						{value === 1 && <SignUp />}
 						{/** card actions */}
 						{value === 0 && (
@@ -129,6 +138,17 @@ const Auth = ({ history }) => {
 			<div className="cube"></div>
 			<div className="cube"></div>
 			<div className="cube"></div>
+			<Snackbar
+				anchorOrigin={{
+					vertical: 'bottom',
+					horizontal: 'left'
+				}}
+				open={handleSnakbar}
+				onClose={() => setHandleSnackBar(false)}
+				autoHideDuration={6000}
+			>
+				<Toast onClose={() => setHandleSnackBar(false)} variant="error" message={error} />
+			</Snackbar>
 		</div>
 	);
 };
